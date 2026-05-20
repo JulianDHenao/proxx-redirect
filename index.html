@@ -7,6 +7,10 @@
 
 <script>
   const searchParams = new URLSearchParams(window.location.search);
+  console.log('URL completa:', window.location.href);
+  console.log('code:', searchParams.get('code'));
+  console.log('error:', searchParams.get('error'))
+  const searchParams = new URLSearchParams(window.location.search);
   const errorCode = searchParams.get('error_code');
   const error = searchParams.get('error');
   const code = searchParams.get('code');
