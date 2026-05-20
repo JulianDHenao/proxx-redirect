@@ -18,10 +18,13 @@
       document.getElementById('card-error').style.display = 'block';
     });
   } else if (code) {
-    // PKCE flow — pasar el code a la app via deep link
-    window.location.replace(
-      'com.studioprix.proxx://reset-password?code=' + code
-    );
+    document.addEventListener('DOMContentLoaded', function() {
+      document.body.style.display = 'flex';
+      document.getElementById('card-pago').style.display = 'none';
+      document.getElementById('card-reset').style.display = 'block';
+      document.getElementById('btn-reset').href = 
+        'com.studioprix.proxx://reset-password?code=' + code;
+    });
   } else {
     document.addEventListener('DOMContentLoaded', function() {
       document.body.style.display = 'flex';
@@ -40,12 +43,18 @@
   </style>
 </head>
 <body>
-  <div class="card">
+  <div id="card-pago" class="card">
     <div class="icon">⚡</div>
     <h1>¡Pago exitoso!</h1>
     <p>Tus créditos serán acreditados en unos segundos. Vuelve a Proxx y actualiza tu saldo.</p>
     <a class="btn" href="com.studioprix.proxx://creditos">Volver a Proxx</a>
   </div>
+  <div id="card-reset" class="card" style="display:none">
+  <div class="icon">🔐</div>
+  <h1>Restablecer contraseña</h1>
+  <p>Toca el botón para continuar en Proxx y crear tu nueva contraseña.</p>
+  <a id="btn-reset" class="btn" href="#">Continuar en Proxx</a>
+</div>
 </body>
 </html>>
 </body>
