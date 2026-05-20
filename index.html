@@ -5,25 +5,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Proxx</title>
 
-  <script>
-    const hash = window.location.hash;
-    const params = new URLSearchParams(hash.replace('#', '?'));
-    const type = params.get('type');
-    if (type === 'recovery') {
-      const accessToken = params.get('access_token');
-      const refreshToken = params.get('refresh_token');
-      window.location.replace(
-        'com.studioprix.proxx://reset-password#access_token=' + accessToken +
-        '&refresh_token=' + refreshToken +
-        '&type=recovery'
-      );
-    } else {
-      document.addEventListener('DOMContentLoaded', function() {
-        document.body.style.display = 'flex';
-      });
-    }
-  </script>
+ <script>
+  console.log('search:', window.location.search);
+  console.log('hash:', window.location.hash);
+  
+  const hashParams = new URLSearchParams(window.location.hash.replace('#', ''));
+  const type = hashParams.get('type');
+  const accessToken = hashParams.get('access_token');
+  const refreshToken = hashParams.get('refresh_token');
 
+  console.log('type:', type);
+  console.log('access_token:', accessToken);
+
+  if (type === 'recovery' && accessToken) {
+    window.location.replace(
+      'com.studioprix.proxx://reset-password#access_token=' + accessToken +
+      '&refresh_token=' + refreshToken +
+      '&type=recovery'
+    );
+  } else {
+    document.addEventListener('DOMContentLoaded', function() {
+      document.body.style.display = 'flex';
+    });
+  }
+</script>
+  
   <style>
     *{margin:0;padding:0;box-sizing:border-box}
     body{display:none;font-family:sans-serif;background:#F4F7FF;align-items:center;justify-content:center;height:100vh;padding:24px}
