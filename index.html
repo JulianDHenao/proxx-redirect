@@ -18,13 +18,13 @@
       document.getElementById('card-error').style.display = 'block';
     });
   } else if (code) {
-    document.addEventListener('DOMContentLoaded', function() {
+    window.onload = function() {
       document.body.style.display = 'flex';
       document.getElementById('card-pago').style.display = 'none';
       document.getElementById('card-reset').style.display = 'block';
       document.getElementById('btn-reset').href = 
         'com.studioprix.proxx://reset-password?code=' + code;
-    });
+    };
   } else {
     document.addEventListener('DOMContentLoaded', function() {
       document.body.style.display = 'flex';
