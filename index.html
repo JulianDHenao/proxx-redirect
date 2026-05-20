@@ -5,23 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Proxx</title>
 
- <script>
-  console.log('search:', window.location.search);
-  console.log('hash:', window.location.hash);
-  
-  const hashParams = new URLSearchParams(window.location.hash.replace('#', ''));
-  const type = hashParams.get('type');
-  const accessToken = hashParams.get('access_token');
-  const refreshToken = hashParams.get('refresh_token');
+<script>
+  const searchParams = new URLSearchParams(window.location.search);
+  const errorCode = searchParams.get('error_code');
+  const error = searchParams.get('error');
+  const code = searchParams.get('code');
 
-  console.log('type:', type);
-  console.log('access_token:', accessToken);
-
-  if (type === 'recovery' && accessToken) {
+  if (errorCode === 'otp_expired' || error === 'access_denied') {
+    document.addEventListener('DOMContentLoaded', function() {
+      document.body.style.display = 'flex';
+      document.getElementById('card-pago').style.display = 'none';
+      document.getElementById('card-error').style.display = 'block';
+    });
+  } else if (code) {
+    // PKCE flow — pasar el code a la app via deep link
     window.location.replace(
-      'com.studioprix.proxx://reset-password#access_token=' + accessToken +
-      '&refresh_token=' + refreshToken +
-      '&type=recovery'
+      'com.studioprix.proxx://reset-password?code=' + code
     );
   } else {
     document.addEventListener('DOMContentLoaded', function() {
