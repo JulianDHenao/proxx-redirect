@@ -46,11 +46,11 @@
     if (errorCode === 'otp_expired' || error === 'access_denied') {
       document.getElementById('card-error').classList.remove('hidden');
     } else if (code) {
-      const intentUrl = 'intent://reset-password?code=' + code + 
-        '#Intent;scheme=com.studioprix.proxx;package=com.studioprix.proxx;end';
-      document.getElementById('btn-reset').href = intentUrl;
-      document.getElementById('card-reset').classList.remove('hidden');
-    } else {
+  const intentUrl = 'intent://reset-password?code=' + code + 
+    '#Intent;scheme=com.studioprix.proxx;end';
+  document.getElementById('btn-reset').href = intentUrl;
+  document.getElementById('card-reset').classList.remove('hidden');
+} else {
       document.getElementById('card-pago').classList.remove('hidden');
     }
   </script>
